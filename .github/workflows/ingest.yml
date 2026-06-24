@@ -1,0 +1,33 @@
+# Phase 1d - run the collector automatically, no laptop required.
+name: ingest-trades
+
+on:
+  schedule:
+    # cron is in UTC. "*/5 * * * *" = every 5 minutes (GitHub's practical minimum).
+    - cron: "*/5 * * * *"
+  workflow_dispatch:   # also lets you trigger a run by hand from the Actions tab
+
+# If a run is still going when the next is due, don't pile them up.
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r collector/requirements.txt
+
+      - name: Run collector
+        env:
+          # This pulls the secret you'll add in GitHub repo settings.
+          # The real value never appears in the code or the logs.
+          NEON_DSN: ${{ secrets.NEON_DSN }}
+        run: python collector/ingest.py
