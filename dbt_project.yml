@@ -1,0 +1,30 @@
+name: 'crypto_analytics'
+version: '1.0.0'
+config-version: 2
+
+# This profile name must match an entry in profiles.yml (see profiles.yml.example).
+profile: 'crypto_analytics'
+
+# Where dbt looks for each kind of file.
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Materialization strategy by layer:
+#   staging -> views   (cheap, always reflect the latest source)
+#   marts   -> tables  (fast to query; fct_trades overrides this to incremental)
+models:
+  crypto_analytics:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts

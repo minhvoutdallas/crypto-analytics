@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: "One row per traded market, with base/quote currency split out."
+    columns:
+      - name: product_id
+        description: "Market, e.g. BTC-USD. Primary key."
+        data_tests:
+          - not_null
+          - unique
+      - name: base_currency
+        description: "Asset being traded, e.g. BTC."
+        data_tests:
+          - not_null
+      - name: quote_currency
+        description: "Pricing currency, e.g. USD."
+        data_tests:
+          - not_null
+
+  - name: fct_trades
+    description: "Trade-grain fact table, loaded incrementally."
+    columns:
+      - name: product_id
+        description: "Market. FK to dim_products."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_id
+      - name: trade_id
+        description: "Coinbase trade ID, unique within a product."
+        data_tests:
+          - not_null
+      - name: price_usd
+        description: "Trade price in USD."
+        data_tests:
+          - not_null
+      - name: side
+        description: "Taker side."
+        data_tests:
+          - accepted_values:
+              values: ['buy', 'sell']
+      - name: traded_at
+        description: "Event time (UTC)."
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - product_id
+            - trade_id
+
+  - name: agg_price_1m
+    description: "1-minute OHLCV candles + VWAP per product."
+    columns:
+      - name: product_id
+        description: "Market. FK to dim_products."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_id
+      - name: minute
+        description: "Start of the 1-minute bucket (UTC)."
+        data_tests:
+          - not_null
+      - name: open_price
+        data_tests:
+          - not_null
+      - name: close_price
+        data_tests:
+          - not_null
+      - name: volume
+        data_tests:
+          - not_null
+    data_tests:
+      # A candle must be internally consistent: high >= low.
+      - dbt_utils.expression_is_true:
+          expression: "high_price >= low_price"
+      # One candle per product per minute.
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - product_id
+            - minute

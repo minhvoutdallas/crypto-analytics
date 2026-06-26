@@ -1,0 +1,25 @@
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select quote_currency
+from "neondb"."marts"."dim_products"
+where quote_currency is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test

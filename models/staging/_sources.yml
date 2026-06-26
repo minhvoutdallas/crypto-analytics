@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Landing zone populated by the Python collector (Phase 1). Never edited by hand."
+    schema: raw
+    tables:
+      - name: trades
+        description: "One row per Coinbase trade, upserted on (product_id, trade_id)."
+        # Source freshness: compare now() to the most recent load time.
+        # ingested_at is LOAD time (when we pulled it), which is what we monitor —
+        # if the collector stops, this goes stale even though event time would too.
+        loaded_at_field: ingested_at
+        freshness:
+          warn_after: { count: 15, period: minute }
+          error_after: { count: 60, period: minute }
+        columns:
+          - name: trade_id
+            description: "Coinbase trade ID, unique within a product."
+          - name: product_id
+            description: "Market, e.g. BTC-USD."
+          - name: price
+            description: "Trade price in quote currency (USD)."
+          - name: size
+            description: "Amount of base asset traded."
+          - name: side
+            description: "Taker side: buy or sell."
+          - name: ts
+            description: "Event time — when the trade occurred (UTC)."
+          - name: ingested_at
+            description: "Load time — when the collector pulled the row."

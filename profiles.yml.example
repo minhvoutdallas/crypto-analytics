@@ -1,0 +1,30 @@
+# Copy this to ~/.dbt/profiles.yml (or keep it here and run dbt with
+# `DBT_PROFILES_DIR=. dbt build`). NEVER commit real credentials — only this example.
+#
+# Your Phase 1 Neon connection string looks like:
+#   postgresql://USER:PASSWORD@ep-xxxx-123.us-east-2.aws.neon.tech/dbname?sslmode=require
+# Map its parts to the env vars below:
+#   USER     -> DBT_PG_USER
+#   PASSWORD -> DBT_PG_PASSWORD
+#   host     -> DBT_PG_HOST   (everything between '@' and '/', e.g. ep-xxxx-123...neon.tech)
+#   dbname   -> DBT_PG_DBNAME
+#
+# Example (bash):
+#   export DBT_PG_HOST="ep-xxxx-123.us-east-2.aws.neon.tech"
+#   export DBT_PG_USER="..."
+#   export DBT_PG_PASSWORD="..."
+#   export DBT_PG_DBNAME="..."
+
+crypto_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DBT_PG_HOST') }}"
+      user: "{{ env_var('DBT_PG_USER') }}"
+      password: "{{ env_var('DBT_PG_PASSWORD') }}"
+      dbname: "{{ env_var('DBT_PG_DBNAME') }}"
+      port: 5432
+      sslmode: require        # Neon requires SSL
+      schema: public          # base schema; staging/marts land in their own schemas (see macro)
+      threads: 4

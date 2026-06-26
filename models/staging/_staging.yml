@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_trades
+    description: "Cleaned, typed trades — one row per (product_id, trade_id)."
+    columns:
+      - name: product_id
+        description: "Market, e.g. BTC-USD."
+        data_tests:
+          - not_null
+      - name: trade_id
+        description: "Coinbase trade ID, unique within a product."
+        data_tests:
+          - not_null
+      - name: price_usd
+        description: "Trade price in USD."
+        data_tests:
+          - not_null
+      - name: size
+        description: "Amount of base asset traded."
+        data_tests:
+          - not_null
+      - name: side
+        description: "Taker side."
+        data_tests:
+          - accepted_values:
+              values: ['buy', 'sell']
+      - name: traded_at
+        description: "Event time (UTC)."
+        data_tests:
+          - not_null
+    # Composite uniqueness: trade_id is only unique within a product.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - product_id
+            - trade_id
