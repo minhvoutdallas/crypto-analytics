@@ -54,6 +54,23 @@ dbt source freshness     # warn >15 min stale, error >60 min
 dbt docs generate && dbt docs serve   # lineage graph / docs
 ```
 
+## Dashboard
+
+A Streamlit app (`dashboard/app.py`) that reads the dbt marts from Neon **live on
+every page load** — collector feeds `raw`, dbt builds `marts`, the dashboard queries
+`marts` directly, so the view is always current. It shows per-product 1-minute
+candlesticks (with a VWAP overlay), KPI metrics, a volume chart, and recent trades.
+Connection pooling and `ttl` caching keep it fast without hammering the database.
+
+```bash
+pip install -r dashboard/requirements.txt
+cp .streamlit/secrets.toml.example .streamlit/secrets.toml   # paste your NEON_DSN
+streamlit run dashboard/app.py                               # opens localhost:8501
+```
+
+Deployed free on Streamlit Community Cloud; the `NEON_DSN` secret is set in the app's
+Settings → Secrets (never committed).
+
 ## Run locally
 
 ```bash
@@ -67,4 +84,4 @@ python collector/ingest.py
 
 - [x] Phase 1 — ingestion + warehouse (live, automated)
 - [x] Phase 2 — dbt models, tests, freshness
-- [ ] Phase 3 — live dashboard
+- [x] Phase 3 — live dashboard (Streamlit, candlesticks + VWAP)

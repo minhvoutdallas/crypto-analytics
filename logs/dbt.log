@@ -7599,3 +7599,387 @@ where parent.to_field is null
 [0m01:49:22.455236 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B2EB17ED50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B2ED3C27D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B2EABC2C80>]}
 [0m01:49:22.455517 [debug] [MainThread]: Flushing usage events
 [0m01:49:22.852839 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:50:45.324795 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000141051F8980>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014102A38A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014107A43890>]}
+
+
+============================== 01:50:45.328787 | 6a2d44df-6f5d-4c3d-9fdf-4580ff3bf2ec ==============================
+[0m01:50:45.328787 [info ] [MainThread]: Running with dbt=1.12.0-b3
+[0m01:50:45.329372 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\mqv18\\Claude-Projects\\crypto-analytics', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt docs generate', 'indirect_selection': 'eager', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\mqv18\\Claude-Projects\\crypto-analytics\\logs'}
+[0m01:50:45.477118 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '6a2d44df-6f5d-4c3d-9fdf-4580ff3bf2ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000141079B5CD0>]}
+[0m01:50:45.526549 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '6a2d44df-6f5d-4c3d-9fdf-4580ff3bf2ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014107800E20>]}
+[0m01:50:45.527774 [info ] [MainThread]: Registered adapter: postgres=1.10.2
+[0m01:50:45.746702 [debug] [MainThread]: checksum: 0e4a53a501973c1290bbbe8ddbbc58a8c045761e8f6e7a53f0279be55580cb39, vars: {}, profile: crypto_analytics, target: dev, version: 1.12.0b3
+[0m01:50:45.892245 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m01:50:45.892587 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m01:50:45.892795 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m01:50:45.927353 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '6a2d44df-6f5d-4c3d-9fdf-4580ff3bf2ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014107AABD50>]}
+[0m01:50:45.938127 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '6a2d44df-6f5d-4c3d-9fdf-4580ff3bf2ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001410810AA80>]}
+[0m01:50:45.938408 [info ] [MainThread]: Found 4 models, 26 data tests, 1 source, 592 macros
+[0m01:50:45.938769 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '6a2d44df-6f5d-4c3d-9fdf-4580ff3bf2ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014108323BD0>]}
+[0m01:50:45.940932 [info ] [MainThread]: 
+[0m01:50:45.941237 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m01:50:45.941545 [info ] [MainThread]: 
+[0m01:50:45.941975 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m01:50:45.944773 [debug] [ThreadPool]: Acquiring new postgres connection 'list_neondb_staging'
+[0m01:50:45.956232 [debug] [ThreadPool]: Acquiring new postgres connection 'list_neondb_marts'
+[0m01:50:46.010258 [debug] [ThreadPool]: Using postgres connection "list_neondb_staging"
+[0m01:50:46.010911 [debug] [ThreadPool]: On list_neondb_staging: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "crypto_analytics", "target_name": "dev", "connection_name": "list_neondb_staging"} */
+select
+      'neondb' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'staging'
+    union all
+    select
+      'neondb' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'staging'
+    union all
+    select
+      'neondb' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'staging'
+  
+[0m01:50:46.011152 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m01:50:46.010613 [debug] [ThreadPool]: Using postgres connection "list_neondb_marts"
+[0m01:50:46.011565 [debug] [ThreadPool]: On list_neondb_marts: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "crypto_analytics", "target_name": "dev", "connection_name": "list_neondb_marts"} */
+select
+      'neondb' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'marts'
+    union all
+    select
+      'neondb' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'marts'
+    union all
+    select
+      'neondb' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'marts'
+  
+[0m01:50:46.011837 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m01:50:46.320092 [debug] [ThreadPool]: SQL status: SELECT 3 in 0.308 seconds
+[0m01:50:46.321245 [debug] [ThreadPool]: On list_neondb_marts: ROLLBACK
+[0m01:50:46.340356 [debug] [ThreadPool]: SQL status: SELECT 1 in 0.329 seconds
+[0m01:50:46.341261 [debug] [ThreadPool]: On list_neondb_staging: ROLLBACK
+[0m01:50:46.356178 [debug] [ThreadPool]: On list_neondb_marts: Close
+[0m01:50:46.379275 [debug] [ThreadPool]: On list_neondb_staging: Close
+[0m01:50:46.382915 [debug] [MainThread]: Using postgres connection "master"
+[0m01:50:46.383182 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "crypto_analytics", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m01:50:46.383464 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m01:50:46.712504 [debug] [MainThread]: SQL status: SELECT 1 in 0.329 seconds
+[0m01:50:46.713555 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '6a2d44df-6f5d-4c3d-9fdf-4580ff3bf2ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014108529710>]}
+[0m01:50:46.713858 [debug] [MainThread]: On master: ROLLBACK
+[0m01:50:46.749137 [debug] [MainThread]: On master: Close
+[0m01:50:46.752817 [debug] [Thread-1 (]: Began running node model.crypto_analytics.stg_trades
+[0m01:50:46.753180 [debug] [Thread-1 (]: Acquiring new postgres connection 'model.crypto_analytics.stg_trades'
+[0m01:50:46.753423 [debug] [Thread-1 (]: Began compiling node model.crypto_analytics.stg_trades
+[0m01:50:46.758762 [debug] [Thread-1 (]: Writing injected SQL for node "model.crypto_analytics.stg_trades"
+[0m01:50:46.759405 [debug] [Thread-1 (]: Began executing node model.crypto_analytics.stg_trades
+[0m01:50:46.759871 [debug] [Thread-1 (]: Finished running node model.crypto_analytics.stg_trades
+[0m01:50:46.760458 [debug] [Thread-4 (]: Began running node test.crypto_analytics.accepted_values_stg_trades_side__buy__sell.920e8a1306
+[0m01:50:46.761207 [debug] [Thread-4 (]: Acquiring new postgres connection 'test.crypto_analytics.accepted_values_stg_trades_side__buy__sell.920e8a1306'
+[0m01:50:46.762172 [debug] [Thread-4 (]: Began compiling node test.crypto_analytics.accepted_values_stg_trades_side__buy__sell.920e8a1306
+[0m01:50:46.760786 [debug] [Thread-3 (]: Began running node model.crypto_analytics.fct_trades
+[0m01:50:46.761894 [debug] [Thread-1 (]: Began running node test.crypto_analytics.dbt_utils_unique_combination_of_columns_stg_trades_product_id__trade_id.1ee3149b9a
+[0m01:50:46.761539 [debug] [Thread-2 (]: Began running node model.crypto_analytics.dim_products
+[0m01:50:46.771005 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.crypto_analytics.dim_products'
+[0m01:50:46.771327 [debug] [Thread-2 (]: Began compiling node model.crypto_analytics.dim_products
+[0m01:50:46.773271 [debug] [Thread-2 (]: Writing injected SQL for node "model.crypto_analytics.dim_products"
+[0m01:50:46.769935 [debug] [Thread-4 (]: Writing injected SQL for node "test.crypto_analytics.accepted_values_stg_trades_side__buy__sell.920e8a1306"
+[0m01:50:46.770342 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.crypto_analytics.fct_trades'
+[0m01:50:46.770647 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.crypto_analytics.stg_trades, now test.crypto_analytics.dbt_utils_unique_combination_of_columns_stg_trades_product_id__trade_id.1ee3149b9a)
+[0m01:50:46.774104 [debug] [Thread-1 (]: Began compiling node test.crypto_analytics.dbt_utils_unique_combination_of_columns_stg_trades_product_id__trade_id.1ee3149b9a
+[0m01:50:46.781065 [debug] [Thread-1 (]: Writing injected SQL for node "test.crypto_analytics.dbt_utils_unique_combination_of_columns_stg_trades_product_id__trade_id.1ee3149b9a"
+[0m01:50:46.773751 [debug] [Thread-3 (]: Began compiling node model.crypto_analytics.fct_trades
+[0m01:50:46.787569 [debug] [Thread-3 (]: Writing injected SQL for node "model.crypto_analytics.fct_trades"
+[0m01:50:46.787887 [debug] [Thread-2 (]: Began executing node model.crypto_analytics.dim_products
+[0m01:50:46.788562 [debug] [Thread-2 (]: Finished running node model.crypto_analytics.dim_products
+[0m01:50:46.788887 [debug] [Thread-2 (]: Began running node test.crypto_analytics.not_null_stg_trades_price_usd.5307aeb400
+[0m01:50:46.789581 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.crypto_analytics.dim_products, now test.crypto_analytics.not_null_stg_trades_price_usd.5307aeb400)
+[0m01:50:46.789888 [debug] [Thread-2 (]: Began compiling node test.crypto_analytics.not_null_stg_trades_price_usd.5307aeb400
+[0m01:50:46.796015 [debug] [Thread-2 (]: Writing injected SQL for node "test.crypto_analytics.not_null_stg_trades_price_usd.5307aeb400"
+[0m01:50:46.789179 [debug] [Thread-4 (]: Began executing node test.crypto_analytics.accepted_values_stg_trades_side__buy__sell.920e8a1306
+[0m01:50:46.790265 [debug] [Thread-1 (]: Began executing node test.crypto_analytics.dbt_utils_unique_combination_of_columns_stg_trades_product_id__trade_id.1ee3149b9a
+[0m01:50:46.797146 [debug] [Thread-1 (]: Finished running node test.crypto_analytics.dbt_utils_unique_combination_of_columns_stg_trades_product_id__trade_id.1ee3149b9a
+[0m01:50:46.797404 [debug] [Thread-1 (]: Began running node test.crypto_analytics.not_null_stg_trades_product_id.ee08461d11
+[0m01:50:46.797641 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.dbt_utils_unique_combination_of_columns_stg_trades_product_id__trade_id.1ee3149b9a, now test.crypto_analytics.not_null_stg_trades_product_id.ee08461d11)
+[0m01:50:46.798239 [debug] [Thread-1 (]: Began compiling node test.crypto_analytics.not_null_stg_trades_product_id.ee08461d11
+[0m01:50:46.796657 [debug] [Thread-4 (]: Finished running node test.crypto_analytics.accepted_values_stg_trades_side__buy__sell.920e8a1306
+[0m01:50:46.798513 [debug] [Thread-2 (]: Began executing node test.crypto_analytics.not_null_stg_trades_price_usd.5307aeb400
+[0m01:50:46.797902 [debug] [Thread-3 (]: Began executing node model.crypto_analytics.fct_trades
+[0m01:50:46.802307 [debug] [Thread-3 (]: Finished running node model.crypto_analytics.fct_trades
+[0m01:50:46.802561 [debug] [Thread-3 (]: Began running node test.crypto_analytics.not_null_stg_trades_trade_id.f81937320b
+[0m01:50:46.802862 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.crypto_analytics.fct_trades, now test.crypto_analytics.not_null_stg_trades_trade_id.f81937320b)
+[0m01:50:46.801049 [debug] [Thread-1 (]: Writing injected SQL for node "test.crypto_analytics.not_null_stg_trades_product_id.ee08461d11"
+[0m01:50:46.801333 [debug] [Thread-4 (]: Began running node test.crypto_analytics.not_null_stg_trades_size.e495507d52
+[0m01:50:46.801849 [debug] [Thread-2 (]: Finished running node test.crypto_analytics.not_null_stg_trades_price_usd.5307aeb400
+[0m01:50:46.804029 [debug] [Thread-2 (]: Began running node test.crypto_analytics.not_null_stg_trades_traded_at.62bfcc51ca
+[0m01:50:46.804368 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_stg_trades_price_usd.5307aeb400, now test.crypto_analytics.not_null_stg_trades_traded_at.62bfcc51ca)
+[0m01:50:46.803254 [debug] [Thread-3 (]: Began compiling node test.crypto_analytics.not_null_stg_trades_trade_id.f81937320b
+[0m01:50:46.803699 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.accepted_values_stg_trades_side__buy__sell.920e8a1306, now test.crypto_analytics.not_null_stg_trades_size.e495507d52)
+[0m01:50:46.804686 [debug] [Thread-2 (]: Began compiling node test.crypto_analytics.not_null_stg_trades_traded_at.62bfcc51ca
+[0m01:50:46.809772 [debug] [Thread-2 (]: Writing injected SQL for node "test.crypto_analytics.not_null_stg_trades_traded_at.62bfcc51ca"
+[0m01:50:46.807260 [debug] [Thread-1 (]: Began executing node test.crypto_analytics.not_null_stg_trades_product_id.ee08461d11
+[0m01:50:46.807530 [debug] [Thread-4 (]: Began compiling node test.crypto_analytics.not_null_stg_trades_size.e495507d52
+[0m01:50:46.806979 [debug] [Thread-3 (]: Writing injected SQL for node "test.crypto_analytics.not_null_stg_trades_trade_id.f81937320b"
+[0m01:50:46.810337 [debug] [Thread-1 (]: Finished running node test.crypto_analytics.not_null_stg_trades_product_id.ee08461d11
+[0m01:50:46.813183 [debug] [Thread-1 (]: Began running node test.crypto_analytics.not_null_dim_products_base_currency.5acdd6bf2b
+[0m01:50:46.813548 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_stg_trades_product_id.ee08461d11, now test.crypto_analytics.not_null_dim_products_base_currency.5acdd6bf2b)
+[0m01:50:46.813851 [debug] [Thread-1 (]: Began compiling node test.crypto_analytics.not_null_dim_products_base_currency.5acdd6bf2b
+[0m01:50:46.816575 [debug] [Thread-1 (]: Writing injected SQL for node "test.crypto_analytics.not_null_dim_products_base_currency.5acdd6bf2b"
+[0m01:50:46.812761 [debug] [Thread-4 (]: Writing injected SQL for node "test.crypto_analytics.not_null_stg_trades_size.e495507d52"
+[0m01:50:46.814141 [debug] [Thread-2 (]: Began executing node test.crypto_analytics.not_null_stg_trades_traded_at.62bfcc51ca
+[0m01:50:46.817246 [debug] [Thread-2 (]: Finished running node test.crypto_analytics.not_null_stg_trades_traded_at.62bfcc51ca
+[0m01:50:46.817558 [debug] [Thread-2 (]: Began running node test.crypto_analytics.not_null_dim_products_product_id.c8aba288d1
+[0m01:50:46.817845 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_stg_trades_traded_at.62bfcc51ca, now test.crypto_analytics.not_null_dim_products_product_id.c8aba288d1)
+[0m01:50:46.818439 [debug] [Thread-2 (]: Began compiling node test.crypto_analytics.not_null_dim_products_product_id.c8aba288d1
+[0m01:50:46.821237 [debug] [Thread-2 (]: Writing injected SQL for node "test.crypto_analytics.not_null_dim_products_product_id.c8aba288d1"
+[0m01:50:46.818119 [debug] [Thread-3 (]: Began executing node test.crypto_analytics.not_null_stg_trades_trade_id.f81937320b
+[0m01:50:46.822084 [debug] [Thread-3 (]: Finished running node test.crypto_analytics.not_null_stg_trades_trade_id.f81937320b
+[0m01:50:46.822364 [debug] [Thread-3 (]: Began running node test.crypto_analytics.not_null_dim_products_quote_currency.11b79ed469
+[0m01:50:46.822885 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_stg_trades_trade_id.f81937320b, now test.crypto_analytics.not_null_dim_products_quote_currency.11b79ed469)
+[0m01:50:46.821548 [debug] [Thread-1 (]: Began executing node test.crypto_analytics.not_null_dim_products_base_currency.5acdd6bf2b
+[0m01:50:46.823621 [debug] [Thread-1 (]: Finished running node test.crypto_analytics.not_null_dim_products_base_currency.5acdd6bf2b
+[0m01:50:46.823878 [debug] [Thread-1 (]: Began running node test.crypto_analytics.unique_dim_products_product_id.ef7b2a9985
+[0m01:50:46.822599 [debug] [Thread-4 (]: Began executing node test.crypto_analytics.not_null_stg_trades_size.e495507d52
+[0m01:50:46.824890 [debug] [Thread-4 (]: Finished running node test.crypto_analytics.not_null_stg_trades_size.e495507d52
+[0m01:50:46.823161 [debug] [Thread-3 (]: Began compiling node test.crypto_analytics.not_null_dim_products_quote_currency.11b79ed469
+[0m01:50:46.827658 [debug] [Thread-3 (]: Writing injected SQL for node "test.crypto_analytics.not_null_dim_products_quote_currency.11b79ed469"
+[0m01:50:46.824141 [debug] [Thread-2 (]: Began executing node test.crypto_analytics.not_null_dim_products_product_id.c8aba288d1
+[0m01:50:46.825207 [debug] [Thread-4 (]: Began running node model.crypto_analytics.agg_price_1m
+[0m01:50:46.824388 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_dim_products_base_currency.5acdd6bf2b, now test.crypto_analytics.unique_dim_products_product_id.ef7b2a9985)
+[0m01:50:46.828840 [debug] [Thread-1 (]: Began compiling node test.crypto_analytics.unique_dim_products_product_id.ef7b2a9985
+[0m01:50:46.832676 [debug] [Thread-1 (]: Writing injected SQL for node "test.crypto_analytics.unique_dim_products_product_id.ef7b2a9985"
+[0m01:50:46.828228 [debug] [Thread-2 (]: Finished running node test.crypto_analytics.not_null_dim_products_product_id.c8aba288d1
+[0m01:50:46.828545 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_stg_trades_size.e495507d52, now model.crypto_analytics.agg_price_1m)
+[0m01:50:46.833434 [debug] [Thread-4 (]: Began compiling node model.crypto_analytics.agg_price_1m
+[0m01:50:46.835409 [debug] [Thread-4 (]: Writing injected SQL for node "model.crypto_analytics.agg_price_1m"
+[0m01:50:46.835678 [debug] [Thread-3 (]: Began executing node test.crypto_analytics.not_null_dim_products_quote_currency.11b79ed469
+[0m01:50:46.833083 [debug] [Thread-2 (]: Began running node test.crypto_analytics.accepted_values_fct_trades_side__buy__sell.e38e52885b
+[0m01:50:46.836740 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_dim_products_product_id.c8aba288d1, now test.crypto_analytics.accepted_values_fct_trades_side__buy__sell.e38e52885b)
+[0m01:50:46.836997 [debug] [Thread-2 (]: Began compiling node test.crypto_analytics.accepted_values_fct_trades_side__buy__sell.e38e52885b
+[0m01:50:46.839268 [debug] [Thread-2 (]: Writing injected SQL for node "test.crypto_analytics.accepted_values_fct_trades_side__buy__sell.e38e52885b"
+[0m01:50:46.836479 [debug] [Thread-1 (]: Began executing node test.crypto_analytics.unique_dim_products_product_id.ef7b2a9985
+[0m01:50:46.836220 [debug] [Thread-3 (]: Finished running node test.crypto_analytics.not_null_dim_products_quote_currency.11b79ed469
+[0m01:50:46.840222 [debug] [Thread-3 (]: Began running node test.crypto_analytics.dbt_utils_unique_combination_of_columns_fct_trades_product_id__trade_id.7339480ee9
+[0m01:50:46.840795 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_dim_products_quote_currency.11b79ed469, now test.crypto_analytics.dbt_utils_unique_combination_of_columns_fct_trades_product_id__trade_id.7339480ee9)
+[0m01:50:46.841112 [debug] [Thread-3 (]: Began compiling node test.crypto_analytics.dbt_utils_unique_combination_of_columns_fct_trades_product_id__trade_id.7339480ee9
+[0m01:50:46.839883 [debug] [Thread-1 (]: Finished running node test.crypto_analytics.unique_dim_products_product_id.ef7b2a9985
+[0m01:50:46.841400 [debug] [Thread-2 (]: Began executing node test.crypto_analytics.accepted_values_fct_trades_side__buy__sell.e38e52885b
+[0m01:50:46.840528 [debug] [Thread-4 (]: Began executing node model.crypto_analytics.agg_price_1m
+[0m01:50:46.845126 [debug] [Thread-4 (]: Finished running node model.crypto_analytics.agg_price_1m
+[0m01:50:46.845426 [debug] [Thread-4 (]: Began running node test.crypto_analytics.not_null_fct_trades_product_id.f7f5eff449
+[0m01:50:46.845781 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.crypto_analytics.agg_price_1m, now test.crypto_analytics.not_null_fct_trades_product_id.f7f5eff449)
+[0m01:50:46.843850 [debug] [Thread-3 (]: Writing injected SQL for node "test.crypto_analytics.dbt_utils_unique_combination_of_columns_fct_trades_product_id__trade_id.7339480ee9"
+[0m01:50:46.844160 [debug] [Thread-1 (]: Began running node test.crypto_analytics.not_null_fct_trades_price_usd.886c96b06c
+[0m01:50:46.844638 [debug] [Thread-2 (]: Finished running node test.crypto_analytics.accepted_values_fct_trades_side__buy__sell.e38e52885b
+[0m01:50:46.846901 [debug] [Thread-2 (]: Began running node test.crypto_analytics.not_null_fct_trades_trade_id.de66dfd0bb
+[0m01:50:46.847236 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.accepted_values_fct_trades_side__buy__sell.e38e52885b, now test.crypto_analytics.not_null_fct_trades_trade_id.de66dfd0bb)
+[0m01:50:46.846077 [debug] [Thread-4 (]: Began compiling node test.crypto_analytics.not_null_fct_trades_product_id.f7f5eff449
+[0m01:50:46.846553 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.unique_dim_products_product_id.ef7b2a9985, now test.crypto_analytics.not_null_fct_trades_price_usd.886c96b06c)
+[0m01:50:46.847524 [debug] [Thread-2 (]: Began compiling node test.crypto_analytics.not_null_fct_trades_trade_id.de66dfd0bb
+[0m01:50:46.852895 [debug] [Thread-2 (]: Writing injected SQL for node "test.crypto_analytics.not_null_fct_trades_trade_id.de66dfd0bb"
+[0m01:50:46.850074 [debug] [Thread-1 (]: Began compiling node test.crypto_analytics.not_null_fct_trades_price_usd.886c96b06c
+[0m01:50:46.850324 [debug] [Thread-3 (]: Began executing node test.crypto_analytics.dbt_utils_unique_combination_of_columns_fct_trades_product_id__trade_id.7339480ee9
+[0m01:50:46.849808 [debug] [Thread-4 (]: Writing injected SQL for node "test.crypto_analytics.not_null_fct_trades_product_id.f7f5eff449"
+[0m01:50:46.855687 [debug] [Thread-1 (]: Writing injected SQL for node "test.crypto_analytics.not_null_fct_trades_price_usd.886c96b06c"
+[0m01:50:46.856248 [debug] [Thread-3 (]: Finished running node test.crypto_analytics.dbt_utils_unique_combination_of_columns_fct_trades_product_id__trade_id.7339480ee9
+[0m01:50:46.856746 [debug] [Thread-3 (]: Began running node test.crypto_analytics.not_null_fct_trades_traded_at.2c0cd0de9e
+[0m01:50:46.857360 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.dbt_utils_unique_combination_of_columns_fct_trades_product_id__trade_id.7339480ee9, now test.crypto_analytics.not_null_fct_trades_traded_at.2c0cd0de9e)
+[0m01:50:46.857612 [debug] [Thread-3 (]: Began compiling node test.crypto_analytics.not_null_fct_trades_traded_at.2c0cd0de9e
+[0m01:50:46.859930 [debug] [Thread-3 (]: Writing injected SQL for node "test.crypto_analytics.not_null_fct_trades_traded_at.2c0cd0de9e"
+[0m01:50:46.857100 [debug] [Thread-2 (]: Began executing node test.crypto_analytics.not_null_fct_trades_trade_id.de66dfd0bb
+[0m01:50:46.860505 [debug] [Thread-2 (]: Finished running node test.crypto_analytics.not_null_fct_trades_trade_id.de66dfd0bb
+[0m01:50:46.861339 [debug] [Thread-2 (]: Began running node test.crypto_analytics.relationships_fct_trades_product_id__product_id__ref_dim_products_.314e8b7a6d
+[0m01:50:46.861586 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_fct_trades_trade_id.de66dfd0bb, now test.crypto_analytics.relationships_fct_trades_product_id__product_id__ref_dim_products_.314e8b7a6d)
+[0m01:50:46.861886 [debug] [Thread-2 (]: Began compiling node test.crypto_analytics.relationships_fct_trades_product_id__product_id__ref_dim_products_.314e8b7a6d
+[0m01:50:46.866795 [debug] [Thread-2 (]: Writing injected SQL for node "test.crypto_analytics.relationships_fct_trades_product_id__product_id__ref_dim_products_.314e8b7a6d"
+[0m01:50:46.860767 [debug] [Thread-1 (]: Began executing node test.crypto_analytics.not_null_fct_trades_price_usd.886c96b06c
+[0m01:50:46.861061 [debug] [Thread-4 (]: Began executing node test.crypto_analytics.not_null_fct_trades_product_id.f7f5eff449
+[0m01:50:46.868107 [debug] [Thread-4 (]: Finished running node test.crypto_analytics.not_null_fct_trades_product_id.f7f5eff449
+[0m01:50:46.868365 [debug] [Thread-4 (]: Began running node test.crypto_analytics.dbt_utils_expression_is_true_agg_price_1m_high_price_low_price.142a65f327
+[0m01:50:46.868602 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_fct_trades_product_id.f7f5eff449, now test.crypto_analytics.dbt_utils_expression_is_true_agg_price_1m_high_price_low_price.142a65f327)
+[0m01:50:46.867175 [debug] [Thread-3 (]: Began executing node test.crypto_analytics.not_null_fct_trades_traded_at.2c0cd0de9e
+[0m01:50:46.869275 [debug] [Thread-3 (]: Finished running node test.crypto_analytics.not_null_fct_trades_traded_at.2c0cd0de9e
+[0m01:50:46.867648 [debug] [Thread-1 (]: Finished running node test.crypto_analytics.not_null_fct_trades_price_usd.886c96b06c
+[0m01:50:46.869846 [debug] [Thread-1 (]: Began running node test.crypto_analytics.not_null_agg_price_1m_close_price.8f3bfbc448
+[0m01:50:46.870412 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_fct_trades_price_usd.886c96b06c, now test.crypto_analytics.not_null_agg_price_1m_close_price.8f3bfbc448)
+[0m01:50:46.870704 [debug] [Thread-1 (]: Began compiling node test.crypto_analytics.not_null_agg_price_1m_close_price.8f3bfbc448
+[0m01:50:46.868834 [debug] [Thread-4 (]: Began compiling node test.crypto_analytics.dbt_utils_expression_is_true_agg_price_1m_high_price_low_price.142a65f327
+[0m01:50:46.869518 [debug] [Thread-3 (]: Began running node test.crypto_analytics.dbt_utils_unique_combination_of_columns_agg_price_1m_product_id__minute.2de80e9828
+[0m01:50:46.870143 [debug] [Thread-2 (]: Began executing node test.crypto_analytics.relationships_fct_trades_product_id__product_id__ref_dim_products_.314e8b7a6d
+[0m01:50:46.873208 [debug] [Thread-1 (]: Writing injected SQL for node "test.crypto_analytics.not_null_agg_price_1m_close_price.8f3bfbc448"
+[0m01:50:46.878761 [debug] [Thread-4 (]: Writing injected SQL for node "test.crypto_analytics.dbt_utils_expression_is_true_agg_price_1m_high_price_low_price.142a65f327"
+[0m01:50:46.879047 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_fct_trades_traded_at.2c0cd0de9e, now test.crypto_analytics.dbt_utils_unique_combination_of_columns_agg_price_1m_product_id__minute.2de80e9828)
+[0m01:50:46.880039 [debug] [Thread-3 (]: Began compiling node test.crypto_analytics.dbt_utils_unique_combination_of_columns_agg_price_1m_product_id__minute.2de80e9828
+[0m01:50:46.883148 [debug] [Thread-3 (]: Writing injected SQL for node "test.crypto_analytics.dbt_utils_unique_combination_of_columns_agg_price_1m_product_id__minute.2de80e9828"
+[0m01:50:46.879577 [debug] [Thread-2 (]: Finished running node test.crypto_analytics.relationships_fct_trades_product_id__product_id__ref_dim_products_.314e8b7a6d
+[0m01:50:46.883678 [debug] [Thread-2 (]: Began running node test.crypto_analytics.not_null_agg_price_1m_minute.516d85b105
+[0m01:50:46.884487 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.relationships_fct_trades_product_id__product_id__ref_dim_products_.314e8b7a6d, now test.crypto_analytics.not_null_agg_price_1m_minute.516d85b105)
+[0m01:50:46.884740 [debug] [Thread-2 (]: Began compiling node test.crypto_analytics.not_null_agg_price_1m_minute.516d85b105
+[0m01:50:46.887021 [debug] [Thread-2 (]: Writing injected SQL for node "test.crypto_analytics.not_null_agg_price_1m_minute.516d85b105"
+[0m01:50:46.884243 [debug] [Thread-1 (]: Began executing node test.crypto_analytics.not_null_agg_price_1m_close_price.8f3bfbc448
+[0m01:50:46.884014 [debug] [Thread-4 (]: Began executing node test.crypto_analytics.dbt_utils_expression_is_true_agg_price_1m_high_price_low_price.142a65f327
+[0m01:50:46.888422 [debug] [Thread-4 (]: Finished running node test.crypto_analytics.dbt_utils_expression_is_true_agg_price_1m_high_price_low_price.142a65f327
+[0m01:50:46.888682 [debug] [Thread-4 (]: Began running node test.crypto_analytics.not_null_agg_price_1m_open_price.f83fb9cf55
+[0m01:50:46.887641 [debug] [Thread-1 (]: Finished running node test.crypto_analytics.not_null_agg_price_1m_close_price.8f3bfbc448
+[0m01:50:46.889229 [debug] [Thread-1 (]: Began running node test.crypto_analytics.not_null_agg_price_1m_product_id.becca4abf7
+[0m01:50:46.889752 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_agg_price_1m_close_price.8f3bfbc448, now test.crypto_analytics.not_null_agg_price_1m_product_id.becca4abf7)
+[0m01:50:46.890059 [debug] [Thread-1 (]: Began compiling node test.crypto_analytics.not_null_agg_price_1m_product_id.becca4abf7
+[0m01:50:46.887962 [debug] [Thread-3 (]: Began executing node test.crypto_analytics.dbt_utils_unique_combination_of_columns_agg_price_1m_product_id__minute.2de80e9828
+[0m01:50:46.888924 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.dbt_utils_expression_is_true_agg_price_1m_high_price_low_price.142a65f327, now test.crypto_analytics.not_null_agg_price_1m_open_price.f83fb9cf55)
+[0m01:50:46.889481 [debug] [Thread-2 (]: Began executing node test.crypto_analytics.not_null_agg_price_1m_minute.516d85b105
+[0m01:50:46.894007 [debug] [Thread-2 (]: Finished running node test.crypto_analytics.not_null_agg_price_1m_minute.516d85b105
+[0m01:50:46.894264 [debug] [Thread-2 (]: Began running node test.crypto_analytics.not_null_agg_price_1m_volume.05cb974356
+[0m01:50:46.894539 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.not_null_agg_price_1m_minute.516d85b105, now test.crypto_analytics.not_null_agg_price_1m_volume.05cb974356)
+[0m01:50:46.892783 [debug] [Thread-1 (]: Writing injected SQL for node "test.crypto_analytics.not_null_agg_price_1m_product_id.becca4abf7"
+[0m01:50:46.893290 [debug] [Thread-3 (]: Finished running node test.crypto_analytics.dbt_utils_unique_combination_of_columns_agg_price_1m_product_id__minute.2de80e9828
+[0m01:50:46.893573 [debug] [Thread-4 (]: Began compiling node test.crypto_analytics.not_null_agg_price_1m_open_price.f83fb9cf55
+[0m01:50:46.897373 [debug] [Thread-4 (]: Writing injected SQL for node "test.crypto_analytics.not_null_agg_price_1m_open_price.f83fb9cf55"
+[0m01:50:46.895097 [debug] [Thread-3 (]: Began running node test.crypto_analytics.relationships_agg_price_1m_product_id__product_id__ref_dim_products_.8143d9b67e
+[0m01:50:46.894777 [debug] [Thread-2 (]: Began compiling node test.crypto_analytics.not_null_agg_price_1m_volume.05cb974356
+[0m01:50:46.900100 [debug] [Thread-2 (]: Writing injected SQL for node "test.crypto_analytics.not_null_agg_price_1m_volume.05cb974356"
+[0m01:50:46.897759 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.crypto_analytics.dbt_utils_unique_combination_of_columns_agg_price_1m_product_id__minute.2de80e9828, now test.crypto_analytics.relationships_agg_price_1m_product_id__product_id__ref_dim_products_.8143d9b67e)
+[0m01:50:46.900770 [debug] [Thread-3 (]: Began compiling node test.crypto_analytics.relationships_agg_price_1m_product_id__product_id__ref_dim_products_.8143d9b67e
+[0m01:50:46.903683 [debug] [Thread-3 (]: Writing injected SQL for node "test.crypto_analytics.relationships_agg_price_1m_product_id__product_id__ref_dim_products_.8143d9b67e"
+[0m01:50:46.900495 [debug] [Thread-1 (]: Began executing node test.crypto_analytics.not_null_agg_price_1m_product_id.becca4abf7
+[0m01:50:46.904295 [debug] [Thread-1 (]: Finished running node test.crypto_analytics.not_null_agg_price_1m_product_id.becca4abf7
+[0m01:50:46.904583 [debug] [Thread-4 (]: Began executing node test.crypto_analytics.not_null_agg_price_1m_open_price.f83fb9cf55
+[0m01:50:46.905400 [debug] [Thread-4 (]: Finished running node test.crypto_analytics.not_null_agg_price_1m_open_price.f83fb9cf55
+[0m01:50:46.904961 [debug] [Thread-2 (]: Began executing node test.crypto_analytics.not_null_agg_price_1m_volume.05cb974356
+[0m01:50:46.906288 [debug] [Thread-2 (]: Finished running node test.crypto_analytics.not_null_agg_price_1m_volume.05cb974356
+[0m01:50:46.905727 [debug] [Thread-3 (]: Began executing node test.crypto_analytics.relationships_agg_price_1m_product_id__product_id__ref_dim_products_.8143d9b67e
+[0m01:50:46.906821 [debug] [Thread-3 (]: Finished running node test.crypto_analytics.relationships_agg_price_1m_product_id__product_id__ref_dim_products_.8143d9b67e
+[0m01:50:46.907674 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m01:50:46.907910 [debug] [MainThread]: Connection 'list_neondb_staging' was properly closed.
+[0m01:50:46.908126 [debug] [MainThread]: Connection 'list_neondb_marts' was properly closed.
+[0m01:50:46.908332 [debug] [MainThread]: Connection 'test.crypto_analytics.not_null_agg_price_1m_product_id.becca4abf7' was properly closed.
+[0m01:50:46.908530 [debug] [MainThread]: Connection 'test.crypto_analytics.not_null_agg_price_1m_open_price.f83fb9cf55' was properly closed.
+[0m01:50:46.908726 [debug] [MainThread]: Connection 'test.crypto_analytics.relationships_agg_price_1m_product_id__product_id__ref_dim_products_.8143d9b67e' was properly closed.
+[0m01:50:46.908918 [debug] [MainThread]: Connection 'test.crypto_analytics.not_null_agg_price_1m_volume.05cb974356' was properly closed.
+[0m01:50:46.911859 [debug] [MainThread]: Command end result
+[0m01:50:46.984249 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\manifest.json
+[0m01:50:46.986775 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\semantic_manifest.json
+[0m01:50:47.008656 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\osi_document.json
+[0m01:50:47.014835 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\run_results.json
+[0m01:50:47.110919 [debug] [MainThread]: Acquiring new postgres connection 'generate_catalog'
+[0m01:50:47.111225 [info ] [MainThread]: Building catalog
+[0m01:50:47.119221 [debug] [ThreadPool]: Acquiring new postgres connection 'neondb.information_schema'
+[0m01:50:47.124856 [debug] [ThreadPool]: Using postgres connection "neondb.information_schema"
+[0m01:50:47.125145 [debug] [ThreadPool]: On neondb.information_schema: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "crypto_analytics", "target_name": "dev", "connection_name": "neondb.information_schema"} */
+
+    
+    
+
+    select
+        'neondb' as table_database,
+        sch.nspname as table_schema,
+        tbl.relname as table_name,
+        case tbl.relkind
+            when 'v' then 'VIEW'
+            when 'm' then 'MATERIALIZED VIEW'
+            else 'BASE TABLE'
+        end as table_type,
+        tbl_desc.description as table_comment,
+        col.attname as column_name,
+        col.attnum as column_index,
+        pg_catalog.format_type(col.atttypid, col.atttypmod) as column_type,
+        col_desc.description as column_comment,
+        pg_get_userbyid(tbl.relowner) as table_owner
+
+    from pg_catalog.pg_namespace sch
+    join pg_catalog.pg_class tbl on tbl.relnamespace = sch.oid
+    join pg_catalog.pg_attribute col on col.attrelid = tbl.oid
+    left outer join pg_catalog.pg_description tbl_desc on (tbl_desc.objoid = tbl.oid and tbl_desc.objsubid = 0)
+    left outer join pg_catalog.pg_description col_desc on (col_desc.objoid = tbl.oid and col_desc.objsubid = col.attnum)
+    where ((upper(sch.nspname) = upper('staging') and
+           upper(tbl.relname) = upper('stg_trades')) or (upper(sch.nspname) = upper('marts') and
+           upper(tbl.relname) = upper('fct_trades')) or (upper(sch.nspname) = upper('marts') and
+           upper(tbl.relname) = upper('agg_price_1m')) or (upper(sch.nspname) = upper('marts') and
+           upper(tbl.relname) = upper('dim_products')) or (upper(sch.nspname) = upper('raw') and
+           upper(tbl.relname) = upper('trades')))
+      and not pg_is_other_temp_schema(sch.oid) -- not a temporary schema belonging to another session
+      and tbl.relpersistence in ('p', 'u') -- [p]ermanent table or [u]nlogged table. Exclude [t]emporary tables
+      and tbl.relkind in ('r', 'v', 'f', 'p', 'm') -- o[r]dinary table, [v]iew, [f]oreign table, [p]artitioned table, [m]aterialized view. Other values are [i]ndex, [S]equence, [c]omposite type, [t]OAST table
+      and col.attnum > 0 -- negative numbers are used for system columns such as oid
+      and not col.attisdropped -- column as not been dropped
+
+    order by
+        sch.nspname,
+        tbl.relname,
+        col.attnum
+[0m01:50:47.125427 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m01:50:47.445462 [debug] [ThreadPool]: SQL status: SELECT 34 in 0.320 seconds
+[0m01:50:47.447647 [debug] [ThreadPool]: On neondb.information_schema: ROLLBACK
+[0m01:50:47.480921 [debug] [ThreadPool]: On neondb.information_schema: Close
+[0m01:50:47.490487 [debug] [MainThread]: Wrote artifact CatalogArtifact to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\catalog.json
+[0m01:50:47.515818 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\manifest.json
+[0m01:50:47.518339 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\semantic_manifest.json
+[0m01:50:47.520519 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\osi_document.json
+[0m01:50:47.520728 [info ] [MainThread]: Catalog written to C:\Users\mqv18\Claude-Projects\crypto-analytics\target\catalog.json
+[0m01:50:47.521636 [debug] [MainThread]: Command `dbt docs generate` succeeded at 01:50:47.521539 after 2.30 seconds
+[0m01:50:47.521897 [debug] [MainThread]: Connection 'generate_catalog' was properly closed.
+[0m01:50:47.522115 [debug] [MainThread]: Connection 'neondb.information_schema' was properly closed.
+[0m01:50:47.522373 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014108B73AD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014108DD1650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014108DD1180>]}
+[0m01:50:47.522681 [debug] [MainThread]: Flushing usage events
+[0m01:50:47.977557 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:50:49.900523 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026C1EB68980>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026C1C398A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026C213339D0>]}
+
+
+============================== 01:50:49.903919 | 814b6b36-0801-47b2-9382-4fe1c1c6f3da ==============================
+[0m01:50:49.903919 [info ] [MainThread]: Running with dbt=1.12.0-b3
+[0m01:50:49.904420 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\mqv18\\Claude-Projects\\crypto-analytics', 'invocation_command': 'dbt docs serve', 'use_colors': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\mqv18\\Claude-Projects\\crypto-analytics\\logs'}
+[0m01:50:50.049600 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '814b6b36-0801-47b2-9382-4fe1c1c6f3da', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026C2117FBB0>]}
+[0m01:50:50.099546 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '814b6b36-0801-47b2-9382-4fe1c1c6f3da', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026C2140AE00>]}

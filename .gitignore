@@ -10,3 +10,6 @@ target/
 dbt_packages/
 logs/
 profiles.yml
+
+# Streamlit secrets (real DSN lives here locally; never commit it)
+.streamlit/secrets.toml
